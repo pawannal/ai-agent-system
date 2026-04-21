@@ -66,7 +66,7 @@ agent = initialize_agent(
     llm=llm,
     agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
     memory=memory,
-    verbose=True
+    verbose=False
 )
 
 
@@ -74,16 +74,9 @@ agent = initialize_agent(
 # MAIN (Testing)
 # -----------------------------
 if __name__ == "__main__":
-    print("\n--- Conversation Test ---")
-
-    print("\nUser: My name is Pawan")
-    print("Agent:", agent.run("My name is Pawan"))
-
-    print("\nUser: What is my name?")
-    print("Agent:", agent.run("What is my name?"))
-
-    print("\nUser: What is 12 * 5?")
-    print("Agent:", agent.run("What is 12 * 5?"))
-
-    print("\nUser: Count words in: Gen AI is powerful")
-    print("Agent:", agent.run("Count words in: Gen AI is powerful"))
+    while True:
+        user_input = input("User: ")
+        if user_input.lower() in ["exit", "quit"]:
+            break
+        response = agent.invoke({"input": user_input})
+        print("Agent:", response["output"])
