@@ -1,20 +1,22 @@
 from langchain_openai import ChatOpenAI
-from langchain.agents import initialize_agent, Tool
-from langchain.agents.agent_types import AgentType
+from langchain.agents import Tool
+from langchain.agents import create_react_agent, AgentExecutor
+from langchain import hub
 from langchain.memory import ConversationBufferMemory
-
 from dotenv import load_dotenv
-load_dotenv()
-
 
 # -----------------------------
-# LLM
+# Load environment variables
+# -----------------------------
+load_dotenv()
+
+# -----------------------------
+# LLM (Brain of system)
 # -----------------------------
 llm = ChatOpenAI(
     model="gpt-3.5-turbo",
     temperature=0
 )
-
 
 # -----------------------------
 # TOOLS
@@ -27,12 +29,10 @@ def calculator_tool(input_text: str):
     except:
         return "Error in calculation"
 
-
 # Word Counter Tool
 def word_count_tool(input_text: str):
     words = input_text.split()
     return f"Word count is {len(words)}"
-
 
 # Register tools
 tools = [
@@ -44,10 +44,9 @@ tools = [
     Tool(
         name="WordCounter",
         func=word_count_tool,
-        description="Useful for counting number of words in a sentence"
+        description="Use this to count number of words in a sentence"
     )
 ]
-
 
 # -----------------------------
 # MEMORY
@@ -57,26 +56,38 @@ memory = ConversationBufferMemory(
     return_messages=True
 )
 
+# -----------------------------
+# PROMPT (ReAct template)
+# -----------------------------
+prompt = hub.pull("hwchase17/react")
 
 # -----------------------------
-# AGENT (ReAct + Memory)
+# AGENT (reasoning engine)
 # -----------------------------
-agent = initialize_agent(
-    tools=tools,
+agent = create_react_agent(
     llm=llm,
-    agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+    tools=tools,
+    prompt=prompt
+)
+
+# -----------------------------
+# EXECUTOR (runtime engine)
+# -----------------------------
+agent_executor = AgentExecutor(
+    agent=agent,
+    tools=tools,
     memory=memory,
     verbose=False
 )
 
-
 # -----------------------------
-# MAIN (Testing)
+# OPTIONAL: Local testing
 # -----------------------------
 if __name__ == "__main__":
     while True:
         user_input = input("User: ")
         if user_input.lower() in ["exit", "quit"]:
             break
-        response = agent.invoke({"input": user_input})
+
+        response = agent_executor.invoke({"input": user_input})
         print("Agent:", response["output"])
