@@ -17,7 +17,7 @@ The agent uses LLM-based reasoning (ReAct) to decide actions and dynamically exe
 
 ## 🏗️ Architecture
 
-![Architecture](./assets/architecture.png)
+app/assets
 
 ### 🔄 Flow
 User → FastAPI → LangGraph Agent → LLM Decision → Tool Execution → Response
