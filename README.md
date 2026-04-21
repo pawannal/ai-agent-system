@@ -1,5 +1,16 @@
 # 🤖 AI Agent System (ReAct + Memory)
 
+# AI Agent System 🚀
+
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![LangChain](https://img.shields.io/badge/LangChain-AI-orange)
+![LangGraph](https://img.shields.io/badge/LangGraph-Agent-red)
+![OpenAI](https://img.shields.io/badge/OpenAI-LLM-black)
+
+## 🔥 Overview
+This project implements...
+
 ## 🚀 Live Features
 - ReAct reasoning agent
 - Tool calling (Calculator, WordCounter)
