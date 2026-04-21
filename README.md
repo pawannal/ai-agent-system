@@ -1,47 +1,48 @@
 # 🤖 AI Agent System (ReAct + Memory)
 
-# AI Agent System 🚀
-
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
 ![LangChain](https://img.shields.io/badge/LangChain-AI-orange)
 ![LangGraph](https://img.shields.io/badge/LangGraph-Agent-red)
 ![OpenAI](https://img.shields.io/badge/OpenAI-LLM-black)
 
+---
+
 ## 🔥 Overview
-This project implements...
+This project implements an AI Agent system using LangGraph and FastAPI.
 
-## 🚀 Live Features
-- ReAct reasoning agent
-- Tool calling (Calculator, WordCounter)
-- Conversational memory
+The agent uses LLM-based reasoning (ReAct) to decide actions and dynamically execute tools such as calculators and text processors, while maintaining conversational context.
 
-A production-ready AI agent built using **LangChain** with tool calling, reasoning (ReAct), and conversational memory.
+---
+
+## 🏗️ Architecture
+
+![Architecture](./assets/architecture.png)
+
+### 🔄 Flow
+User → FastAPI → LangGraph Agent → LLM Decision → Tool Execution → Response
 
 ---
 
 ## 🚀 Features
 
-* 🧠 ReAct-based reasoning (Thought → Action → Observation)
-* 🔧 Multi-tool support (Calculator, Word Counter)
-* 💬 Conversational memory (context-aware responses)
-* 🤖 LLM-powered decision making (OpenAI)
-* 🧩 Modular and extensible design
-
----
-
-## 🧠 Architecture
-
-User → Agent → Tools → LLM → Response
+- 🧠 ReAct-based reasoning (Thought → Action → Observation)
+- 🔧 Tool calling (Calculator, Word Counter)
+- 💬 Conversational memory (context-aware responses)
+- 🤖 LLM-powered decision making
+- 🧩 Modular and extensible design
 
 ---
 
 ## 🛠 Tech Stack
 
-* Python
-* LangChain
-* OpenAI
-* python-dotenv
+- Python
+- FastAPI
+- LangChain
+- LangGraph
+- OpenAI
+- Pydantic
+- python-dotenv
 
 ---
 
@@ -55,51 +56,6 @@ python -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
-```
-
----
-
-## 🔑 Environment Variables
-
-Create a `.env` file:
-
-```env
-OPENAI_API_KEY=your_api_key_here
-```
-
----
-
-## ▶️ Run
-
-```bash
-python app/agent.py
-```
-
----
-
-## 📌 Example Use Cases
-
-* "What is 10 + 5?" → Uses calculator
-* "My name is Pawan" → Stores in memory
-* "What is my name?" → Retrieves from memory
-* "Count words in: Gen AI is powerful" → Uses WordCounter
-
----
-
-## ⚠️ Notes
-
-* `eval()` is used for calculator (not safe for production — will be improved)
-* Uses deprecated LangChain APIs (will upgrade in next iteration)
-
----
-
-## 🎯 Status
-
-✔ Multi-tool agent
-✔ Memory-enabled conversational agent
-🚧 Next: FastAPI integration
-
----
 
 ## 📈 Learning Outcome
 
